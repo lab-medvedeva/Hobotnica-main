@@ -1,4 +1,0 @@
-export("Hobot_stat")
-export("generate_random_signatures")
-#export("classEVA")
-import("doParallel")

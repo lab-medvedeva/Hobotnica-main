@@ -1,4 +1,4 @@
 export("Hobot_stat")
 export("generate_random_signatures")
-#export("classEVA")
+export("classEVA")
 import("doParallel")

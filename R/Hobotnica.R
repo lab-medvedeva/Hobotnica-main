@@ -12,14 +12,13 @@ Hobot_stat <- function(distance_matrix, anno){
     inclass_sum <- 0
     classes <- unique(annotation) # unique classes
     Ns <- vector()
-    #print(by_class)
+
     for (i  in 1:length(classes)){
-        #		clas_samples <- rownames(anno[anno[,1] == clas,])
+
         clas <- classes[i]
         class_samples <- which(annotation == clas)
         l_tmp <- length(class_samples)
         Ns[i] <- l_tmp
-        #print(clas_samples)
         tmp_sum_inclass <- sum(re_rank.m[class_samples,class_samples]) # sum of ranks, describing in-class distances
         inclass_sum <- inclass_sum + tmp_sum_inclass
 

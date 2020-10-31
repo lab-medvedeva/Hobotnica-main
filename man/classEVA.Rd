@@ -2,10 +2,12 @@
 \alias{classEVA}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-%%  ~~function to do ... ~~
+classEVA algorithm
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+  Triangle-counting based algorithm that provides a score (in range [0:1]) 
+  that shows how good the subgroups of input dataset are separated between 
+  each other ( bigger values mean better separability, and vice versa).
 }
 \usage{
 classEVA(x)

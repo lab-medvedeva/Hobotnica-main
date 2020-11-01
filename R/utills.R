@@ -1,6 +1,6 @@
 
 
-generate_random_signatures <- function(dataset, signature_length=100, n_signatures=0,n_cores=0) {
+generate_random_signatures <- function(dataset, signature_length=100, n_signatures=0, n_cores=0) {
     if (length(dim(dataset)) != 2) {
         stop("The dataset dim length should be equal 2, stopping.")
     }

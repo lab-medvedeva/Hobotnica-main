@@ -1,10 +1,10 @@
-Hobot_stat <- function(distance_matrix, anno){
-    if (typeof(anno) == "list") {
-        annotation <- as.vector(unlist(anno))
+Hobot_stat <- function(distMatrix, annotation){
+    if (typeof(annotation) == "list") {
+        annotation <- as.vector(unlist(annotation))
     } else {
-        annotation <- as.vector(anno)
+        annotation <- as.vector(annotation)
     }
-    rank.m <- as.matrix(distance_matrix) # transform distance matrix to matrix object
+    rank.m <- as.matrix(distMatrix) # transform distance matrix to matrix object
     re_rank.m <- rank.m
     re_rank.m[lower.tri(rank.m)] <- rank(rank.m[lower.tri(rank.m)]) # transform distances to ranks
     re_rank.m[upper.tri(rank.m)] <- rank(rank.m[upper.tri(rank.m)]) #
@@ -31,20 +31,19 @@ Hobot_stat <- function(distance_matrix, anno){
     minimal_value <- number_of_unique_inclass_elements* (1 + number_of_unique_inclass_elements)
 
     normalization_factor <- maximal_value - minimal_value
-    #sum_clever <- 0 #(2*sum(Ns)*sum(Ns) - Ns_squared_sum +1)*Ns_squared_sum/2 - (1 + Ns_squared_sum)*Ns_squared_sum/2
     return (max(0, 1 - (inclass_sum - minimal_value)/normalization_factor ))
 
 }
 
 
 
-Hobot_distr <- function(N ,distance_matrix, annotation){
+Hobot_distr <- function(N ,distMatrix, annotation){
 
     hobots <- vector()
     for (i in 1:100000){
         sample_anno <- annotation
         sample_anno[,1] <- sample(annotation[,1])
-        hobots <- c(hobots, Hobot_stat(sampleDists, sample_anno)$total)
+        hobots <- c(hobots, Hobot_stat(distMatrix, sample_anno)$total)
     }
 
     return(hobots)

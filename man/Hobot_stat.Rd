@@ -9,10 +9,8 @@ Calculates Hobotnica score on dataset given grouping
 }
 \examples{
 data(iris)
-install.packages("BiocManager")
-BiocManager::install("amap")
-library(amap)
-distMatrix = Dist(t(iris[, -5]))
+#library(amap)
+distMatrix = dist(iris[, -5])
 annotation = iris[, 5]
 Hobot_stat(distMatrix, annotation)
 }

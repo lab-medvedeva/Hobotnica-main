@@ -1,8 +1,8 @@
-\name{Hobot_stat}
-\alias{Hobot_stat}
+\name{Hobotnica}
+\alias{Hobotnica}
 \title{Hobotnica algorithm}
 \usage{
-Hobot_stat(distMatrix, annotation)
+Hobotnica(distMatrix, annotation)
 }
 \description{
 Calculates Hobotnica score on dataset given grouping
@@ -12,5 +12,5 @@ data(iris)
 #library(amap)
 distMatrix = dist(iris[, -5])
 annotation = iris[, 5]
-Hobot_stat(distMatrix, annotation)
+Hobotnica(distMatrix, annotation)
 }

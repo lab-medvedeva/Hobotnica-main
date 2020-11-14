@@ -1,4 +1,4 @@
-Hobot_stat <- function(distMatrix, annotation){
+Hobotnica <- function(distMatrix, annotation){
     if (typeof(annotation) == "list") {
         annotation <- as.vector(unlist(annotation))
     } else {
@@ -43,7 +43,7 @@ Hobot_distr <- function(N ,distMatrix, annotation){
     for (i in 1:100000){
         sample_anno <- annotation
         sample_anno[,1] <- sample(annotation[,1])
-        hobots <- c(hobots, Hobot_stat(distMatrix, sample_anno)$total)
+        hobots <- c(hobots, Hobotnica(distMatrix, sample_anno)$total)
     }
 
     return(hobots)

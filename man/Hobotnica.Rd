@@ -9,7 +9,6 @@ Calculates Hobotnica score on dataset given grouping
 }
 \examples{
 data(iris)
-#library(amap)
 distMatrix = dist(iris[, -5])
 annotation = iris[, 5]
 Hobotnica(distMatrix, annotation)

@@ -14,5 +14,5 @@ data(iris)
 distMatrix = dist(iris[, -5])
 annotation = iris[, 5]
 distMatrix = as.matrix(distMatrix)
-GenerateDistributionByPermutations(distMatrix, annotation, nPermutations, nCores)
+GenerateDistributionByPermutations(distMatrix, annotation, 300)
 }

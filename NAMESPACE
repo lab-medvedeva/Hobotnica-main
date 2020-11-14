@@ -1,3 +1,4 @@
-export("Hobot_stat")
-export("generate_random_signatures")
+export("Hobotnica")
+export("GenerateRandomSignatures")
+export("GenerateDistributionByPermutations")
 import("doParallel")

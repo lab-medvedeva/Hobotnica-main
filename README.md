@@ -8,4 +8,5 @@ which is close to null when the annotation is random and close to one when annot
 
 ## Installation
 The current recommended way is cloning this repo and executing:  
-`R CMD INSTALL --no-multiarch --with-keep.source Hobotnica`
+`R CMD INSTALL --no-multiarch --with-keep.source .`  
+in it.

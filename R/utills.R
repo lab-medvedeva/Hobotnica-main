@@ -14,7 +14,7 @@ GenerateRandomSignatures <- function(dataset, signatureLength=100, nSignatures=0
         nSignatures = dim(dataset)[1]*10
     }
 
-    
+
     if (nCores == 0){
         nCores = detectCores() - 1
     }
@@ -91,4 +91,47 @@ GenerateDistributionByPermutations <- function(distMatrix, annotation, nPermutat
 
 
 
+LengthPlot <- function(dataset, annotation, rangedGenes,  distFunction=dist, minLength=10, maxLength=200, name=NULL,  nCores=1) {
 
+    if ((length(rangedGenes) != dim(dataset)[1] && length(rangedGenes) < maxLength) || length(rangedGenes) <= minLength) {
+        stop("lenght of rangedGenes should be equal to number of genes in dataset or equal or greater than maxLength and greater than minLength, stopping.") 
+    }
+    if (minLength >= maxLength) {
+        stop("maxLength should be greater than minLength, stopping.")
+    }
+    if (nCores <= 0) {
+        stop("nCores should be greater or equal to zero, stopping.")
+    }
+    if (name == NULL) {
+        name = paste("Hobotnica",  name, paste(minLength, maxLength, sep=":")  sep=" ")
+    }
+
+
+    if (nCores == 1) {
+    scores <- list()
+    for (len in minLength:maxLength) {
+        datasetCut <- dataset[1:len, ]
+        distMatrix <- distFunction(datasetCut)
+        scores[[len]] <- Hobotnica(dataset, annotation)
+
+    }
+    plot <- qplot(minLength:maxLength, unlist(scores), main=name) + labs(x="Signature length", y="Score")
+    return (plot)
+
+    } else {
+        if (nCores == 0) {
+            nCores = detectCores() -1
+        } 
+        scores <- foreach(i = 1:(maxLength-minLength)) %dopar% {
+                datasetCut <- dataset[1:len, ]
+                distMatrix <- distFunction(datasetCut)
+                Hobotnica(dataset, annotation)
+
+            }
+
+       names(scores) <-  minLength:maxLength
+       plot <- qplot(minLength:maxLength, unlist(scores), main=paste("Hobotnica",  method, paste(minLength, maxLength, sep=":")  sep=" ")) + labs(x="Signature length", y="Score")
+       return (plot)
+        
+    }
+}

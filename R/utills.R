@@ -103,7 +103,7 @@ LengthPlot <- function(dataset, annotation, rangedGenes,  distFunction=dist, min
         stop("nCores should be greater or equal to zero, stopping.")
     }
     if (name == NULL) {
-        name = paste("Hobotnica",  name, paste(minLength, maxLength, sep=":")  sep=" ")
+        name = paste("Hobotnica",  name, paste(minLength, maxLength, sep=":"), sep=" ")
     }
 
 
@@ -130,7 +130,7 @@ LengthPlot <- function(dataset, annotation, rangedGenes,  distFunction=dist, min
             }
 
        names(scores) <-  minLength:maxLength
-       plot <- qplot(minLength:maxLength, unlist(scores), main=paste("Hobotnica",  method, paste(minLength, maxLength, sep=":")  sep=" ")) + labs(x="Signature length", y="Score")
+       plot <- qplot(minLength:maxLength, unlist(scores), main=name) + labs(x="Signature length", y="Score")
        return (plot)
         
     }

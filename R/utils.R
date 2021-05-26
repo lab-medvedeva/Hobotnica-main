@@ -91,7 +91,7 @@ GenerateDistributionByPermutations <- function(distMatrix, annotation, nPermutat
 
 
 
-LengthPlot <- function(dataset, annotation, rangedGenes,  distFunction=dist, minLength=10, maxLength=200, name=NULL,  nCores=1) {
+LengthPlotter <- function(dataset, annotation, rangedGenes,  distFunction=dist, minLength=10, maxLength=200, name=NULL,  nCores=1) {
 
     if ((length(rangedGenes) != dim(dataset)[1] && length(rangedGenes) < maxLength) || length(rangedGenes) <= minLength) {
         stop("lenght of rangedGenes should be equal to number of genes in dataset or equal or greater than maxLength and greater than minLength, stopping.") 
@@ -134,4 +134,22 @@ LengthPlot <- function(dataset, annotation, rangedGenes,  distFunction=dist, min
        return (plot)
         
     }
+}
+
+
+MDSPlotter <- function(distMatrix, annotation, name = NULL) {
+    if (dim(distMatrix)[1] != dim(distMatrix)[2]) {
+        stop("distMatrix must be a square matrix, stopping.")
+    }
+    if (is.null(name)) {
+        name <- "MDS Plot"
+
+    }
+    fit <- cmdscale(distMatrix,k=2, list.=TRUE)
+    x <- fit$points[,1]
+    y <- fit$points[,2]
+    plot <- qplot(x, y, xlab="Coordinate 1", ylab="Coordinate 2", 
+                main=name, colour=annotation)+ theme(legend.position = "none", plot.title = element_text(hjust = 0.5, size=16, face="bold"))
+    
+    return(plot)
 }

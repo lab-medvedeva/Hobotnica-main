@@ -1,3 +1,7 @@
+
+
+
+
 Hobotnica <- function(distMatrix, annotation){
     if (typeof(annotation) == "list") {
         annotation <- as.vector(unlist(annotation))

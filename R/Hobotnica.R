@@ -9,9 +9,8 @@ Hobotnica <- function(distMatrix, annotation){
         annotation <- as.vector(annotation)
     }
     rank.m <- as.matrix(distMatrix) # transform distance matrix to matrix object
-    re_rank.m <- rank.m
-    re_rank.m[lower.tri(rank.m)] <- rank(rank.m[lower.tri(rank.m)]) # transform distances to ranks
-    re_rank.m[upper.tri(rank.m)] <- rank(rank.m[upper.tri(rank.m)]) #
+    rank.m[lower.tri(rank.m)] <- rank(rank.m[lower.tri(rank.m)]) # transform distances to ranks
+    rank.m[upper.tri(rank.m)] <- rank(rank.m[upper.tri(rank.m)]) #
 
     inclass_sum <- 0
     classes <- unique(annotation) # unique classes
@@ -23,7 +22,7 @@ Hobotnica <- function(distMatrix, annotation){
         class_samples <- which(annotation == clas)
         l_tmp <- length(class_samples)
         Ns[i] <- l_tmp
-        tmp_sum_inclass <- sum(re_rank.m[class_samples,class_samples]) # sum of ranks, describing in-class distances
+        tmp_sum_inclass <- sum(rank.m[class_samples,class_samples]) # sum of ranks, describing in-class distances
         inclass_sum <- inclass_sum + tmp_sum_inclass
 
 

@@ -11,5 +11,5 @@ The current recommended way is cloning this repo and executing:
 `R CMD INSTALL --no-multiarch --with-keep.source .`  
 in it.
 
-##Data 
+## Data 
 All data and scripts related to application note in F1000Research are located in `data` branch

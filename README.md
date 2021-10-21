@@ -10,3 +10,6 @@ which is close to null when the annotation is random and close to one when annot
 The current recommended way is cloning this repo and executing:  
 `R CMD INSTALL --no-multiarch --with-keep.source .`  
 in it.
+
+##Data 
+All data and scripts related to application note in F1000Research are located in `data` branch
